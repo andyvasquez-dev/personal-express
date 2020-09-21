@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>The Shoppies</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/7aa840a654.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <section class="overlay hidden">
+      <ul>
+        <li>
+          <p class="votes">USERS</p>
+        </li>
+      </ul>
+      <ul class="votes">
+
+      </ul>
+    </section>
+    <section class="container">
+      <section class="bar1"></section>
+      <section class="bar2"></section>
+      <section class="bar3"></section>
+    </section>
+    <section class="thanksDetails hidden">
+      <i class="fa fa-check-circle" aria-hidden="true"></i>
+      <p>Thank You</p>
+      <p>Your nominations have successfully made it to the Shoppies</p>
+      <button type="button" name="button" class="okButton">ok</button>
+    </section>
+    <section class="">
+
+    </section>
+    <section class="banner hidden">
+      <p>You have reached the max amount of Nominations for the Shoppies</p>
+    </section>
+    <section class="container">
+      <h1> The Shoppies </h1>
+      <section class="inputSection" id="">
+        <label for="Title">Movie Title</label>
+        <input type="text" name="" value="" placeholder="title" id="titleInput" class="titleInput">
+      </section>
+
+      <section class="outputContainer hidden" id="output">
+        <section id="results" class="results">
+          <p id="inputSearch"></p>
+          <ul class="resultsList movieList">
+
+            <!-- <li class="movieItem">
+              <section class="movieHeader">
+
+              </section>
+              <section class="movieDetails">
+
+              </section>
+            </li> -->
+
+          </ul>
+          <section class="loader hidden" id=""> <!-- add  hidden -->
+              <img src='loader2.gif' class="hidden">
+          </section>
+          <section class="nothingFound hidden">
+            <p>No results were found matching your search</p>
+          </section>
+        </section>
+
+        <section id="nominations" class="nominations">
+          <section class="nominationHeaderSection">
+            <p class="nominationTitle">Nominations</p>
+            <p class="countdown">5 votes left!</p>
+          </section>
+          <ul class="nominationsList">
+
+          </ul>
+
+          <section class="complete hidden" id="complete">
+            <button type="button" name="submit" class="submitButton">Submit Nominations!</button>
+          </section>
+
+        </section>
+
+      </section>
+    </section>
+
+    <script type="text/javascript" src="main.js">
+    </script>
+  </body>
+</html>
