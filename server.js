@@ -18,11 +18,13 @@ app.listen(3000, () => {
     });
 });
 
-// app.set('view engine', 'ejs')
+app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(express.static('public'))
 
+
+//'Access-Control-Allow-Origin' : '*'
 app.put('/postVotes', (req, res) => {
   console.log('yer');
   db.collection('nominations')

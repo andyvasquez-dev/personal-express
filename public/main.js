@@ -1,9 +1,9 @@
-document.addEventListener("DOMContentLoaded", postVotes)
+// document.addEventListener("DOMContentLoaded", postVotes)
 
 function getCurrentVotes(){
   //
   fetch('/currentVotes',{
-    method:'getVotes'
+    method:'get'
   })
     .then(res=>res.json())
     .then(data=>{
@@ -34,15 +34,16 @@ function getCurrentVotes(){
 }
 
 function postVotes(usersNoms){
-  fetch('/postVotes',{
-    method:'PUT',
+  console.log('made it');
+  fetch('postVotes',{
+    method:'put',
     headers:{'Content-Type' : 'application/json'},
     body:JSON.stringify({
       'movie1':usersNoms[0],
       'movie2':usersNoms[1],
       'movie3':usersNoms[2],
       'movie4':usersNoms[3],
-      'movie5':usersNoms[4],
+      'movie5':usersNoms[4]
     })
   })
   .then(res => res.json())
@@ -237,10 +238,10 @@ function movieSearch(){ // bring back all matches dating back to 1995
   }
 
     // brings back matches from each year ending at yearcheckend`
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    // const proxyurl = "https://cors-anywhere.herokuapp.com/";
     // fetch(proxyurl+`http://www.omdbapi.com/?s=${title}&apikey=`)
     //proxyurl+ below
-    fetch(proxyurl+`www.omdbapi.com/?apikey=3a3e941d=${title}`)
+    fetch(`http://www.omdbapi.com/?apikey=c2d156e8&s=${title}`)
       .then(response=>response.json())
       .then(data=>{
         console.log(data);
