@@ -9,20 +9,27 @@
   </head>
   <body>
     <section class="overlay hidden">
-      <ul>
+      <ul class="totalVotes">
         <li>
-          <p class="votes">USERS</p>
+          <p class="movie">Movies</p>
+          <p class="votes">Votes</p>
         </li>
-      </ul>
-      <ul class="votes">
-
+        <% if (nominations[0].movie){ %
+          <% for(var i=0; i<nominations.length; i++){%>
+            <li>
+              <p><%= nominations[i].movie %></p>
+              <p><%= nominations[i].votes %></p>
+            </li>
+          <% } %>
+        <% } %>
       </ul>
     </section>
-    <section class="container">
+    <section class="menuContainer">
       <section class="bar1"></section>
       <section class="bar2"></section>
       <section class="bar3"></section>
     </section>
+
     <section class="thanksDetails hidden">
       <i class="fa fa-check-circle" aria-hidden="true"></i>
       <p>Thank You</p>

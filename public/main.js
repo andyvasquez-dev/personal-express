@@ -1,42 +1,50 @@
 // document.addEventListener("DOMContentLoaded", postVotes)
 
-function getCurrentVotes(){
-  //
-  fetch('/currentVotes',{
-    method:'get'
-  })
-    .then(res=>res.json())
-    .then(data=>{
-      console.log(data);
-      const votes =document.querySelector('.votes')
-      votes.innerHTML = ""
-      data.timestamps.sort((a,b) => parseFloat(a.time) - parseFloat(b.time))
-      console.log(data.timestamps);
-      data.timestamps.forEach((entry, i) => {
+document.querySelector('.menuContainer').addEventListener('click',()=>{
+  document.querySelector('.bar1').classList.toggle('change')
+  document.querySelector('.bar2').classList.toggle('change')
+  document.querySelector('.bar3').classList.toggle('change')
+  document.querySelector('.overlay').classList.toggle('hidden')
+  // document.querySelector('').classList.toggle()
+})
 
-        let li = document.createElement('li')
-        li.classList.add('entry')
-
-        let pMovie = document.createElement('p')
-        let movieNode = document.createTextNode(entry.movie)
-        pMovie.appendChild(movieNode)
-
-        let pVotes = document.createElement('p')
-        let votesNode = document.createTextNode(entry.votes)
-        pVotes.appendChild(votesNode)
-
-        li.appendChild(pMovie)
-        li.appendChild(pVotes)
-
-        votes.appendChild(li)
-    })
-  })
-}
+// function getCurrentVotes(){
+//   //
+//   fetch('/currentVotes',{
+//     method:'get'
+//   })
+//     .then(res=>res.json())
+//     .then(data=>{
+//       console.log(data);
+//       const votes =document.querySelector('.votes')
+//       votes.innerHTML = ""
+//       data.timestamps.sort((a,b) => parseFloat(a.time) - parseFloat(b.time))
+//       console.log(data.timestamps);
+//       data.timestamps.forEach((entry, i) => {
+//
+//         let li = document.createElement('li')
+//         li.classList.add('entry')
+//
+//         let pMovie = document.createElement('p')
+//         let movieNode = document.createTextNode(entry.movie)
+//         pMovie.appendChild(movieNode)
+//
+//         let pVotes = document.createElement('p')
+//         let votesNode = document.createTextNode(entry.votes)
+//         pVotes.appendChild(votesNode)
+//
+//         li.appendChild(pMovie)
+//         li.appendChild(pVotes)
+//
+//         votes.appendChild(li)
+//     })
+//   })
+// }
 
 function postVotes(usersNoms){
   console.log('made it');
   fetch('postVotes',{
-    method:'put',
+    method:'post',
     headers:{'Content-Type' : 'application/json'},
     body:JSON.stringify({
       'movie1':usersNoms[0],
@@ -46,9 +54,12 @@ function postVotes(usersNoms){
       'movie5':usersNoms[4]
     })
   })
-  .then(res => res.json())
+  .then(response=> { if (response.ok) return response.json()})
   .then(data => {
     console.log(data);
+    removeThanks();
+    window.location.reload(true)
+
   })
 }
 
@@ -188,20 +199,7 @@ function showResults(results){
     nominateButton.appendChild(nominateButtonNode)
     nominateButton.classList.add(`nominate${i}`)
     nominateButton.addEventListener("click", nominateSelection)
-    // let arrowButton = document.createElement('p')
-    // arrowButton.innerHTML = `&#9660;`
-    // arrowButton.classList.add('arrow')
-    // arrowButton.addEventListener('click', e => {
-    //   let arrow = document.querySelector('.arrow')
-    //   arrow.classList.toggle("active")
-    //   const movieDetails = movieHeaderSec.nextElementSibling;
-    //   if (arrow.classList.contains('active')){
-    //     movieDetails.style.maxHeight = movieDetails.scrollHeight + "px"; //
-    //   }
-    //   else{
-    //     movieDetails.style.maxHeight = 0;
-    //   }
-    // })
+
 
     buttonSection.appendChild(nominateButton)
     // buttonSection.appendChild(arrowButton)

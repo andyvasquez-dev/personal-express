@@ -23,80 +23,80 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(express.static('public'))
 
+app.get('/', (req, res) => {
+  db.collection('nominations').find().toArray((err, result) => {
+    if (err) return console.log(err)
 
-//'Access-Control-Allow-Origin' : '*'
-app.put('/postVotes', (req, res) => {
-  console.log('yer');
-  db.collection('nominations')
-  .findOneAndUpdate({movie: req.body.movie1}, {
-    $set: {
-      votes:1
+    if (result.length) {
+      res.render('index.ejs', {nominations:result})
+    }else{
+      const nominations =[{'movie':0}] // creates a roulette array and assigns the first value to 0, for the comparison in the profile .ejs file were sending data to
+      res.render('index.ejs', {nominations:nominations})
     }
-  }, {
-    sort: {_id: -1},
-    upsert: true
-  }, (err, result) => {
-    if (err) return res.send(err)
-    res.json({movie:req.body.movie1})
   })
-  //
-  // db.collection('nominations')
-  // .findOneAndUpdate({movie: req.body.movie2, votes:}, {
-  //   $set: {
-  //     votes:req.body.votes + 1
-  //   }
-  // }, {
-  //   sort: {_id: -1},
-  //   upsert: true
-  // }, (err, result) => {
-  //   if (err) return res.send(err)
-  //   res.send(result)
-  // })
-  //
-  // db.collection('nominations')
-  // .findOneAndUpdate({movie: req.body.movie3, votes:}, {
-  //   $set: {
-  //     votes:req.body.votes + 1
-  //   }
-  // }, {
-  //   sort: {_id: -1},
-  //   upsert: true
-  // }, (err, result) => {
-  //   if (err) return res.send(err)
-  //   res.send(result)
-  // })
-  //
-  // db.collection('nominations')
-  // .findOneAndUpdate({movie: req.body.movie4, votes:}, {
-  //   $set: {
-  //     votes:req.body.votes + 1
-  //   }
-  // }, {
-  //   sort: {_id: -1},
-  //   upsert: true
-  // }, (err, result) => {
-  //   if (err) return res.send(err)
-  //   res.send(result)
-  // })
-  //
-  // db.collection('nominations')
-  // .findOneAndUpdate({movie: req.body.movie5, votes:}, {
-  //   $set: {
-  //     votes:req.body.votes + 1
-  //   }
-  // }, {
-  //   sort: {_id: -1},
-  //   upsert: true
-  // }, (err, result) => {
-  //   if (err) return res.send(err)
-  //   res.send(result)
-  // })
-  console.log('yer');
 })
 
-app.delete('/messages', (req, res) => {
-  db.collection('messages').findOneAndDelete({name: req.body.name, msg: req.body.msg}, (err, result) => {
-    if (err) return res.send(500, err)
-    res.send('Message deleted!')
+//'Access-Control-Allow-Origin' : '*'
+app.post('/postVotes', (req, res) => {
+  db.collection('nominations')
+  .findOneAndUpdate({movie: req.body.movie1}, {
+    $inc:{
+      votes:+1
+    }
+  },{
+    upsert: true
+  }, (err, result) => {
+    if (err) return console.log(err)
+    console.log(`saved ${req.body.movie1}`)
+  })
+
+  db.collection('nominations')
+  .findOneAndUpdate({movie: req.body.movie2}, {
+    $inc:{
+      votes:+1
+    }
+  },{
+    upsert: true
+  }, (err, result) => {
+    if (err) return console.log(err)
+    console.log(`saved ${req.body.movie2}`)
+  })
+
+  db.collection('nominations')
+  .findOneAndUpdate({movie: req.body.movie3}, {
+    $inc:{
+      votes:+1
+    }
+  },{
+    upsert: true
+  }, (err, result) => {
+    if (err) return console.log(err)
+    console.log(`saved ${req.body.movie3}`)
+  })
+
+  db.collection('nominations')
+  .findOneAndUpdate({movie: req.body.movie4}, {
+    $inc:{
+      votes:+1
+    }
+  },{
+    upsert: true
+  }, (err, result) => {
+    if (err) return console.log(err)
+    console.log(`saved ${req.body.movie4}`)
+  })
+
+
+  db.collection('nominations')
+  .findOneAndUpdate({movie: req.body.movie5}, {
+    $inc:{
+      votes:+1
+    }
+  },{
+    upsert: true
+  }, (err, result) => {
+    if (err) return console.log(err)
+    console.log(`saved ${req.body.movie5} `)
+    res.json('ballot saved')
   })
 })
