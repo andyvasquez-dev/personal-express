@@ -38,65 +38,66 @@ app.get('/', (req, res) => {
 
 //'Access-Control-Allow-Origin' : '*'
 app.post('/postVotes', (req, res) => {
-  db.collection('nominations')
-  .findOneAndUpdate({movie: req.body.movie1}, {
-    $inc:{
-      votes:+1
-    }
-  },{
-    upsert: true
-  }, (err, result) => {
-    if (err) return console.log(err)
-    console.log(`saved ${req.body.movie1}`)
-  })
 
-  db.collection('nominations')
-  .findOneAndUpdate({movie: req.body.movie2}, {
-    $inc:{
-      votes:+1
-    }
-  },{
-    upsert: true
-  }, (err, result) => {
-    if (err) return console.log(err)
-    console.log(`saved ${req.body.movie2}`)
-  })
+        db.collection('nominations')
+        .findOneAndUpdate({movie: req.body.movie1}, {
+          $inc:{
+            votes:+1
+          }
+        },{
+          upsert: true
+        }, (err, result) => {
+          if (err) return console.log(err)
+          console.log(`saved ${req.body.movie1}`)
+        })
 
-  db.collection('nominations')
-  .findOneAndUpdate({movie: req.body.movie3}, {
-    $inc:{
-      votes:+1
-    }
-  },{
-    upsert: true
-  }, (err, result) => {
-    if (err) return console.log(err)
-    console.log(`saved ${req.body.movie3}`)
-  })
+        db.collection('nominations')
+        .findOneAndUpdate({movie: req.body.movie2}, {
+          $inc:{
+            votes:+1
+          }
+        },{
+          upsert: true
+        }, (err, result) => {
+          if (err) return console.log(err)
+          console.log(`saved ${req.body.movie2}`)
+        })
 
-  db.collection('nominations')
-  .findOneAndUpdate({movie: req.body.movie4}, {
-    $inc:{
-      votes:+1
-    }
-  },{
-    upsert: true
-  }, (err, result) => {
-    if (err) return console.log(err)
-    console.log(`saved ${req.body.movie4}`)
-  })
+        db.collection('nominations')
+        .findOneAndUpdate({movie: req.body.movie3}, {
+          $inc:{
+            votes:+1
+          }
+        },{
+          upsert: true
+        }, (err, result) => {
+          if (err) return console.log(err)
+          console.log(`saved ${req.body.movie3}`)
+        })
+
+        db.collection('nominations')
+        .findOneAndUpdate({movie: req.body.movie4}, {
+          $inc:{
+            votes:+1
+          }
+        },{
+          upsert: true
+        }, (err, result) => {
+          if (err) return console.log(err)
+          console.log(`saved ${req.body.movie4}`)
+        })
 
 
-  db.collection('nominations')
-  .findOneAndUpdate({movie: req.body.movie5}, {
-    $inc:{
-      votes:+1
-    }
-  },{
-    upsert: true
-  }, (err, result) => {
-    if (err) return console.log(err)
-    console.log(`saved ${req.body.movie5} `)
-    res.json('ballot saved')
-  })
+        db.collection('nominations')
+        .findOneAndUpdate({movie: req.body.movie5}, {
+          $inc:{
+            votes:+1
+          }
+        },{
+          upsert: true
+        }, (err, result) => {
+          if (err) return console.log(err)
+          console.log(`saved ${req.body.movie5} `)
+          res.json('ballot saved')
+        })
 })
